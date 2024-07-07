@@ -73,7 +73,7 @@ def sigmoid(x: float) -> float:
         return (1.0)/(1.0+exp(-x))
     else:
         return (exp(x))/(1.0+exp(x))
-    raise NotImplementedError("Need to implement for Task 0.1")
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def relu(x: float) -> float:
@@ -83,7 +83,7 @@ def relu(x: float) -> float:
     (See https://en.wikipedia.org/wiki/Rectifier_(neural_networks) .)
     """
     return x if x > 0 else 0
-    raise NotImplementedError("Need to implement for Task 0.1")
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 EPS = 1e-6
@@ -101,26 +101,40 @@ def exp(x: float) -> float:
 
 def log_back(x: float, d: float) -> float:
     r"If $f = log$ as above, compute $d \times f'(x)$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    print("TODO: wtf")
+    # this is saying take f(x) = log
+        # based off this value, return `d` *  d/dx(f) # i.e, d/dx(log)
+        # so: d/dx  log
+        # so: 1/x
+        # = 1/x # rmbr to mult by d
+        # = d/x
+    return d/x
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def inv(x: float) -> float:
     "$f(x) = 1/x$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    return 1/x
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def inv_back(x: float, d: float) -> float:
     r"If $f(x) = 1/x$ compute $d \times f'(x)$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    # this is saying take f(x) = 1/x
+        # based off this value, return `d` *  d/dx(f) # i.e, d/dx(1/x)
+        # so: d/dx  x^(-1)
+        # so: - x^(-2)
+        # = - 1/x**2 # rmbr to mult by d
+    return d * -(1/x**2)
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def relu_back(x: float, d: float) -> float:
     r"If $f = relu$ compute $d \times f'(x)$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    if (x < 0): return 0
+    elif (x > 0): return d * x;
+    else: return None
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 # ## Task 0.3
