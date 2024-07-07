@@ -12,50 +12,49 @@ from typing import Callable, Iterable
 
 def mul(x: float, y: float) -> float:
     "$f(x, y) = x * y$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    return x * y
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def id(x: float) -> float:
     "$f(x) = x$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def add(x: float, y: float) -> float:
     "$f(x, y) = x + y$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    return x + y
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def neg(x: float) -> float:
     "$f(x) = -x$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    return (-1 * x)
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def lt(x: float, y: float) -> float:
     "$f(x) =$ 1.0 if x is less than y else 0.0"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    return x if x < y else 0.0
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def eq(x: float, y: float) -> float:
     "$f(x) =$ 1.0 if x is equal to y else 0.0"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    return 1.0 if x == y else 0.0
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def max(x: float, y: float) -> float:
     "$f(x) =$ x if x is greater than y else y"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    return x if x > y else y
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def is_close(x: float, y: float) -> float:
     "$f(x) = |x - y| < 1e-2$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError("Need to implement for Task 0.1")
+    # raise NotImplementedError("Need to implement for Task 0.1")
+    return abs(x - y) < 1e-2
 
 
 def sigmoid(x: float) -> float:
@@ -70,7 +69,10 @@ def sigmoid(x: float) -> float:
 
     for stability.
     """
-    # TODO: Implement for Task 0.1.
+    if x >= 0:
+        return (1.0)/(1.0+exp(-x))
+    else:
+        return (exp(x))/(1.0+exp(x))
     raise NotImplementedError("Need to implement for Task 0.1")
 
 
@@ -80,7 +82,7 @@ def relu(x: float) -> float:
 
     (See https://en.wikipedia.org/wiki/Rectifier_(neural_networks) .)
     """
-    # TODO: Implement for Task 0.1.
+    return x if x > 0 else 0
     raise NotImplementedError("Need to implement for Task 0.1")
 
 
@@ -139,14 +141,21 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[fl
         A function that takes a list, applies `fn` to each element, and returns a
          new list
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    # need to setup an abstracted function, `f(list)
+    # -> it should apply the passed `fn` on each elem of the passed list; returns a new one
+    def list_mapper(runtimeList):
+        return [ fn(x) for x in runtimeList ]
+
+    return list_mapper
+    # raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def negList(ls: Iterable[float]) -> Iterable[float]:
     "Use `map` and `neg` to negate each element in `ls`"
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    neg_mapfn = map(lambda x : -x)
+    return neg_mapfn(ls)
+    # def neglist_mapper(runtimeList):
+    #     return [ neg_mapfn(x) for x in runtimeList ]
 
 
 def zipWith(
@@ -165,8 +174,16 @@ def zipWith(
          applying fn(x, y) on each pair of elements.
 
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    # need to call `fn(a,b) for pairs of l_x, l_y`
+
+    def zip_map(l1, l2):
+        newList = []
+        for x,y in zip(l1,l2):
+            newList.append(fn(x,y))
+        return newList
+
+    return zip_map
+    # raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def addLists(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
