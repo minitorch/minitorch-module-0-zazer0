@@ -9,53 +9,43 @@ from typing import Callable, Iterable
 #
 # Implementation of a prelude of elementary functions.
 
-
 def mul(x: float, y: float) -> float:
     "$f(x, y) = x * y$"
     return x * y
-    # raise NotImplementedError("Need to implement for Task 0.1")
-
 
 def id(x: float) -> float:
     "$f(x) = x$"
-    # raise NotImplementedError("Need to implement for Task 0.1")
-
+    return x
 
 def add(x: float, y: float) -> float:
     "$f(x, y) = x + y$"
     return x + y
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def neg(x: float) -> float:
     "$f(x) = -x$"
     return (-1 * x)
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def lt(x: float, y: float) -> float:
     "$f(x) =$ 1.0 if x is less than y else 0.0"
-    return x if x < y else 0.0
-    # raise NotImplementedError("Need to implement for Task 0.1")
+    return 1.0 if x < y else 0.0
 
 
 def eq(x: float, y: float) -> float:
     "$f(x) =$ 1.0 if x is equal to y else 0.0"
     return 1.0 if x == y else 0.0
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def max(x: float, y: float) -> float:
     "$f(x) =$ x if x is greater than y else y"
     return x if x > y else y
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def is_close(x: float, y: float) -> float:
     "$f(x) = |x - y| < 1e-2$"
-    # raise NotImplementedError("Need to implement for Task 0.1")
-    return abs(x - y) < 1e-2
 
+    return abs(x - y) < 1e-2
 
 def sigmoid(x: float) -> float:
     r"""
@@ -73,7 +63,6 @@ def sigmoid(x: float) -> float:
         return (1.0)/(1.0+exp(-x))
     else:
         return (exp(x))/(1.0+exp(x))
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def relu(x: float) -> float:
@@ -83,21 +72,17 @@ def relu(x: float) -> float:
     (See https://en.wikipedia.org/wiki/Rectifier_(neural_networks) .)
     """
     return x if x > 0 else 0
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 EPS = 1e-6
-
 
 def log(x: float) -> float:
     "$f(x) = log(x)$"
     return math.log(x + EPS)
 
-
 def exp(x: float) -> float:
     "$f(x) = e^{x}$"
     return math.exp(x)
-
 
 def log_back(x: float, d: float) -> float:
     r"If $f = log$ as above, compute $d \times f'(x)$"
@@ -109,13 +94,11 @@ def log_back(x: float, d: float) -> float:
         # = 1/x # rmbr to mult by d
         # = d/x
     return d/x
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def inv(x: float) -> float:
     "$f(x) = 1/x$"
     return 1/x
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def inv_back(x: float, d: float) -> float:
@@ -126,7 +109,6 @@ def inv_back(x: float, d: float) -> float:
         # so: - x^(-2)
         # = - 1/x**2 # rmbr to mult by d
     return d * -(1/x**2)
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def relu_back(x: float, d: float) -> float:
@@ -134,7 +116,6 @@ def relu_back(x: float, d: float) -> float:
     if (x < 0): return 0
     elif (x > 0): return d * x;
     else: return None
-    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 # ## Task 0.3
