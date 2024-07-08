@@ -142,7 +142,6 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[fl
         return [ fn(x) for x in runtimeList ]
 
     return list_mapper
-    # raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def negList(ls: Iterable[float]) -> Iterable[float]:
@@ -202,14 +201,34 @@ def reduce(
          $x_1 \ldots x_n$ and computes the reduction :math:`fn(x_3, fn(x_2,
          fn(x_1, x_0)))`
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    # (origFn(), start)
+
+    # make reduceFn: takes (lsToReduce)
+        # should call origFn on each pair of elems;
+        # starting with the passed `start var and ls[0]`!
+
+    def reduceFn(lsToReduce):
+        if len(lsToReduce) == 0: return 0
+        elif len(lsToReduce) <= 2:
+            return start
+
+        acc = start
+        for elem in lsToReduce:
+            print(f"Adding: {acc},{elem}")
+            fn(acc,elem)
+        return acc
+
+    return reduceFn
 
 
 def sum(ls: Iterable[float]) -> float:
     "Sum up a list using `reduce` and `add`."
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    if (len(ls)) == 0:
+        return 0
+    start = ls[0]
+    reducer = reduce(add,start)
+    if len(ls) < 2: return start
+    return reducer(ls[1:])
 
 
 def prod(ls: Iterable[float]) -> float:
