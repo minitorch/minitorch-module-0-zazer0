@@ -178,13 +178,13 @@ def zipWith(
         return newList
 
     return zip_map
-    # raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def addLists(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
     "Add the elements of `ls1` and `ls2` using `zipWith` and `add`"
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    addWith = zipWith(add)
+    addedList = addWith(ls1, ls2)
+    return addedList
 
 
 def reduce(
