@@ -128,18 +128,18 @@ def test_symmetric(x,y) -> None:
     Write a test that ensures that :func:`minitorch.operators.mul` is symmetric, i.e.
     gives the same value regardless of the order of its input.
     """
-    assert(mul(x,y) == mul(y,x))
+    assert_close(mul(x,y) , mul(y,x))
 
 
 @pytest.mark.task0_2
-def test_distribute() -> None:
+@given(x=floats(allow_nan=False), y=floats(allow_nan=False), d=integers())
+def test_distribute(x,y,d) -> None:
     r"""
     Write a test that ensures that your operators distribute, i.e.
     :math:`z \times (x + y) = z \times x + z \times y`
     """
-    # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
-
+    print(x,y)
+    assert_close(mul(d,add(x,y)) , add(mul(d,x),mul(d,y)))
 
 @pytest.mark.task0_2
 def test_other() -> None:
