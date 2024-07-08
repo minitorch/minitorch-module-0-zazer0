@@ -142,13 +142,22 @@ def test_distribute(x,y,d) -> None:
     assert_close(mul(d,add(x,y)) , add(mul(d,x),mul(d,y)))
 
 @pytest.mark.task0_2
-def test_other() -> None:
+
+@given(x=integers(), y=small_floats)
+def test_other(x,y) -> None:
     """
     Write a test that ensures some other property holds for your functions.
     """
-    # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
+    # test that ints and floats can be used interchangeably
+    if x > 0:
+        assert relu_back(x, y) == y
+    if x < 0:
+        assert relu_back(x, y) == 0.0
 
+    if y > 0:
+        assert relu_back(y, x) == x
+    if y < 0:
+        assert relu_back(y, x) == 0.0
 
 # ## Task 0.3  - Higher-order functions
 
