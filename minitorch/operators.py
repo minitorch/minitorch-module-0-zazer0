@@ -208,14 +208,12 @@ def reduce(
         # starting with the passed `start var and ls[0]`!
 
     def reduceFn(lsToReduce):
-        if len(lsToReduce) == 0: return 0
-        elif len(lsToReduce) <= 2:
+        if len(lsToReduce) == 0: # passed `start` was first original elem
             return start
 
         acc = start
         for elem in lsToReduce:
-            print(f"Adding: {acc},{elem}")
-            fn(acc,elem)
+            acc = fn(acc,elem)
         return acc
 
     return reduceFn
@@ -227,11 +225,13 @@ def sum(ls: Iterable[float]) -> float:
         return 0
     start = ls[0]
     reducer = reduce(add,start)
-    if len(ls) < 2: return start
     return reducer(ls[1:])
 
 
 def prod(ls: Iterable[float]) -> float:
     "Product of a list using `reduce` and `mul`."
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    if (len(ls)) == 0:
+        return 0
+    start = 1
+    reducer = reduce(mul,start)
+    return reducer(ls)
