@@ -2,7 +2,7 @@ from typing import Callable, List, Tuple
 
 import pytest
 from hypothesis import given
-from hypothesis.strategies import lists
+from hypothesis.strategies import lists, integers, floats
 
 from minitorch import MathTest
 from minitorch.operators import (
@@ -110,7 +110,7 @@ def test_sigmoid(a: float) -> None:
     """
     assert(sigmoid(a) >= 0.0)
     assert(sigmoid(a) <= 1.0)
-    # assert(math.isclose(1 - sigmoid(a), sigmoid(-a))) # idk why this broken lol
+    assert_close(1 - sigmoid(a), sigmoid(-a)) # idk why this broken lol
 
 
 @pytest.mark.task0_2
@@ -119,18 +119,16 @@ def test_transitive(a: float, b: float, c: float) -> None:
     "Test the transitive property of less-than (a < b and b < c implies a < c)"
     if (lt(a,b) == 1.0 and lt(b,c) == 1.0):
         assert(lt(a,c) == 1.0)
-    # else: # not guaranteed! smh
-    #     assert(lt(a,c) == 0.0)
 
 
 @pytest.mark.task0_2
-def test_symmetric() -> None:
+@given(x=floats(allow_nan=False), y=floats(allow_nan=False))
+def test_symmetric(x,y) -> None:
     """
     Write a test that ensures that :func:`minitorch.operators.mul` is symmetric, i.e.
     gives the same value regardless of the order of its input.
     """
-    # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
+    assert(mul(x,y) == mul(y,x))
 
 
 @pytest.mark.task0_2
