@@ -122,7 +122,7 @@ def test_transitive(a: float, b: float, c: float) -> None:
 
 
 @pytest.mark.task0_2
-@given(x=floats(allow_nan=False), y=floats(allow_nan=False))
+@given(x=integers(), y=integers())
 def test_symmetric(x,y) -> None:
     """
     Write a test that ensures that :func:`minitorch.operators.mul` is symmetric, i.e.
@@ -132,7 +132,7 @@ def test_symmetric(x,y) -> None:
 
 
 @pytest.mark.task0_2
-@given(x=floats(allow_nan=False), y=floats(allow_nan=False), d=integers())
+@given(x=integers(), y=integers(), d=integers())
 def test_distribute(x,y,d) -> None:
     r"""
     Write a test that ensures that your operators distribute, i.e.
