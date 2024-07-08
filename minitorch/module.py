@@ -62,10 +62,10 @@ class Module:
         # 0.4
         "Enumerate over all the parameters of this module and its descendents."
         params: Sequence = ([v for v in self._parameters.values()])
-        # for module in self._modules:
-        #     new_params = module.
-        #     params[k] = v
+        for module in self._modules.values():
+            params.extend(module.parameters())
         return params
+
 
     def add_parameter(self, k: str, v: Any) -> Parameter:
         """
